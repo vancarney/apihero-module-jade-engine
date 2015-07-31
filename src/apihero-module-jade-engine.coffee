@@ -27,13 +27,13 @@ module.exports.init = (app,options,callback)->
   tMan = new TemplateManager
   
   app.once 'ahero-modules-loaded', =>
-    out = 'var jade = require("jade-runtime")'
+    out = "var jade = require('#{path.join __dirname, 'node_modules', 'jade-runtime'}')"
     _.each (@configs = app.ApiHero.getModuleConfigs()), (config)=>
       out += tMan.processConfig config
     outFile = path.join @options.buildDir, @options.fileName
     fs.outputFile outFile, out, (e)=>
       try
-        browserify outFile
+        browserify.browserify outFile
         .bundle()
         .pipe fs.createWriteStream @options.distDir
       catch e
