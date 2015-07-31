@@ -1,15 +1,27 @@
 {
   "author": "Van Carney <carney.van@gmail.com>",
-  "name": "apihero-module-stub",
-  "description": "Empty Repo for bootstraping new Module Projects",
+  "name": "apihero-module-jade-engine",
+  "description": "Jade Templates & Routing solution for ApiHero",
   "keywords": [
     "jade",
+    "browserify",
+    "templates",
+    "routes",
+    "REST",
+    "router",
+    "jst",
+    "mixins",
+    "helpers",
     "loopback",
     "API-Hero"
   ],
   "version": "0.0.1-alpha",
-  "main":"./index.js",
-  "asset_paths":["./assets/_layouts", "./assets/_mixins"],
+  "main": "./index.js",
+  "moduleConfig": {
+    "assets": null,
+    "templates": null,
+    "moduleOptions": {}
+  },
   "licenses": [
     {
       "type": "MIT",
@@ -21,10 +33,12 @@
     "url": "github.com/vancarney/apihero-module-jade-router.git"
   },
   "dependencies": {
-    "lodash": "^3.6.0",
-    "jade":"^1.11.0",
-    "fs-extra":"^0.20.1",
-    "connect-modrewrite":"^0.8.1"
+    "apihero-module-browserify": "git+https://github.com/vancarney/apihero-module-browserify.git",
+    "apihero-module-jade-router": "git+https://github.com/vancarney/apihero-module-jade-router.git",
+    "apihero-module-mincer": "git+https://github.com/vancarney/apihero-module-mincer.git",
+    "fs-extra": "^0.22.1",
+    "jade-runtime": "^1.1.0",
+    "lodash": "^3.10.0"
   },
   "devDependencies": {
     "coffee-script": "^1.9.1",
