@@ -27,7 +27,7 @@ module.exports.init = (app,options,callback)->
   tMan = new TemplateManager
   
   app.once 'ahero-modules-loaded', =>
-    out = "var jade = require('#{path.join __dirname, 'node_modules', 'jade-runtime'}')"
+    out = "var jade = require('#{path.join __dirname, '..', 'node_modules', 'jade-runtime'}')"
     _.each (@configs = app.ApiHero.getModuleConfigs()), (config)=>
       out += tMan.processConfig config
     outFile = path.join @options.buildDir, @options.fileName
