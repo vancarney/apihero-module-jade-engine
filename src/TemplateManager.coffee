@@ -29,7 +29,7 @@ class TemplateManager extends EventEmitter
  
     try
       inputString = fs.readFileSync fileName, 'utf8'
-      jade.compileWithDependenciesTracked inputString options
+      jade.compileWithDependenciesTracked inputString, options
       result      = jade.compileClientWithDependenciesTracked inputString, options
     catch e
       return @emit 'error', e
