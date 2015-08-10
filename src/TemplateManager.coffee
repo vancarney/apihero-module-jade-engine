@@ -3,7 +3,6 @@ fs              = require 'fs-extra'
 path            = require 'path'
 {EventEmitter}  = require 'events'
 jade            = module.parent.exports.jade
-console.log "parent.jade #{jade}"
 class TemplateManager extends EventEmitter
   'use strict'
   dependencies:{}
@@ -11,7 +10,13 @@ class TemplateManager extends EventEmitter
   processConfig:(config)->
     @out   = ''
     getTemplate = (template)=>
-      "\n\n#{@[if template.match /\.jade+$/ then 'processTemplate' else 'compileDirectory'] template}"
+      if template.match /\.[a-z]*+$/i
+        @root = path.dirname template
+        t = @processTemplate template
+      else
+        @root = path.join path.dirname template, path.basename template
+        t = @compileDirectory template
+      "\n\n#{t}"
     if config.templates?
       switch typeof config.templates
         when 'string'
@@ -24,13 +29,14 @@ class TemplateManager extends EventEmitter
     @out
   processTemplate: (fileName,opts={})->
     options = _.extend {filename: path.join path.dirname(fileName), path.basename fileName}, opts
-    refName = options.filename
+    refName = options.filename.replace @root, ''
+    console.log refName
     @dependencies[refName] ?= []
  
     try
       inputString = fs.readFileSync fileName, 'utf8'
-      jade.compileWithDependenciesTracked inputString, options
-      result      = jade.compileClientWithDependenciesTracked inputString, options
+      # jade.compileWithDependenciesTracked inputString, options
+      result      = jade.compileFileClient inputString, options
     catch e
       return @emit 'error', e
       
@@ -50,7 +56,8 @@ class TemplateManager extends EventEmitter
       catch e
         console.log "unable to stat file: #{_path}"
         continue
-      out += if stat.isFile() then "\n\n#{processTemplate _path}" else compileDirectory path.join dir, file
+      out += if stat.isFile() then "\n\n#{@processTemplate _path}" else @compileDirectory path.join dir, file
+    out
   save:(path, callback)->
     fs.writeFile path, @out, callback 
 module.exports = TemplateManager
