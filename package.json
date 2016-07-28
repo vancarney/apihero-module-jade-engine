@@ -1,9 +1,9 @@
 {
   "author": "Van Carney <carney.van@gmail.com>",
-  "name": "apihero-module-jade-engine",
-  "description": "Jade Templates & Routing solution for ApiHero",
+  "name": "apihero-module-pug-engine",
+  "description": "pug Templates & Routing solution for ApiHero",
   "keywords": [
-    "jade",
+    "pug",
     "browserify",
     "templates",
     "routes",
@@ -30,28 +30,28 @@
   ],
   "repository": {
     "type": "git",
-    "url": "github.com/vancarney/apihero-module-jade-router.git"
+    "url": "github.com/vancarney/apihero-module-pug-router.git"
   },
   "dependencies": {
     "apihero-module-browserify": "git+https://github.com/vancarney/apihero-module-browserify.git",
-    "apihero-module-jade-router": "git+https://github.com/vancarney/apihero-module-jade-router.git",
     "apihero-module-mincer": "git+https://github.com/vancarney/apihero-module-mincer.git",
-    "fs-extra": "^0.22.1",
-    "jade-runtime": "^1.1.0",
-    "lodash": "^3.10.0"
+    "apihero-module-pug-router": "git+https://github.com/vancarney/apihero-module-pug-router.git",
+    "fs-extra": "^0.30.0",
+    "lodash": "^4.14.0",
+    "pug-runtime": "^2.0.2"
   },
   "devDependencies": {
-    "coffee-script": "^1.9.1",
-    "express": "^4.11.1 ",
-    "mocha": "^2.2.5",
-    "chai": "^3.0.0",
-    "docco": "^0.6.2",
-    "supertest": "^1.0.1",
-    "loopback-testing": "^1.1.0",
-    "loopback-connector": "^2.2.1",
-    "api-hero": "git+https://github.com/vancarney/rikki-tikki#api-hero"
+    "api-hero": "git+https://github.com/vancarney/rikki-tikki#api-hero",
+    "chai": "^3.5.0",
+    "coffee-script": "^1.10.0",
+    "docco": "^0.7.0",
+    "express": "^4.14.0",
+    "loopback-connector": "^2.4.0",
+    "loopback-testing": "^1.2.0",
+    "mocha": "^2.5.3",
+	"supertest": "^1.2.0"
   },
-  "homepage": "https://github.com/vancarney/apihero-module-jade-router",
+  "homepage": "https://github.com/vancarney/apihero-module-pug-router",
   "scripts": {
     "test": "cake test"
   }

@@ -2,7 +2,7 @@ fs              = require 'fs-extra'
 {_}             = require 'lodash'
 path            = require 'path'
 {EventEmitter}  = require 'events'
-jade            = module.parent.exports.jade.jade
+pug            = module.parent.exports.pug.pug
 class TemplateManager extends EventEmitter
   'use strict'
   dependencies:{}
@@ -33,8 +33,8 @@ class TemplateManager extends EventEmitter
     # @dependencies[refName] ?= []
     try
       # inputString = fs.readFileSync fileName, 'utf8'
-      # jade.compileWithDependenciesTracked inputString, options
-      result = jade.compileFileClient fileName, options
+      # pug.compileWithDependenciesTracked inputString, options
+      result = pug.compileFileClient fileName, options
     catch e
       return @emit 'error', e
       

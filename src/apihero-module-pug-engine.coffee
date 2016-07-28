@@ -1,21 +1,22 @@
 {_}         = require 'lodash'
 fs          = require 'fs-extra'
 path        = require 'path'
-router      = require 'apihero-module-jade-router'
+router      = require 'apihero-module-pug-router'
 browserify  = require 'apihero-module-browserify'
-jade_runtime= require 'jade-runtime'
+pug_runtime= require 'pug-runtime'
 global.app_root ?= process.cwd()
 module.exports.browserify = browserify
 
-module.exports.jade = {}
-_.each router['jade'], (fun,param)=>
-  module.exports.jade[param] = fun
+module.exports.pug = {}
+_.each router['pug'], (fun,param)=>
+  module.exports.pug[param] = fun
   
 module.exports.router = router
-_p = path.join __dirname, '..', 'node_modules', 'apihero-module-jade-router', 'node_modules', 'apihero-module-jade', 'node_modules', 'jade', 'runtime.js'
-module.exports['jade-runtime'] = fs.readFileSync _p, 'utf8'
+# _p = path.join __dirname, '..', 'node_modules', 'apihero-module-pug-router', 'node_modules', 'apihero-module-pug', 'node_modules', 'pug', 'runtime.js'
+_p = path.join '', 'node_modules','pug', 'runtime.js'
+module.exports['pug-runtime'] = fs.readFileSync _p, 'utf8'
 
-module.exports.init = (app,options,callback)->
+module.exports.init = (app, options, callback)->
   defaults =
     distDir: path.join app_root || process.cwd(), 'dist'
     buildDir: path.join app_root || process.cwd(), 'build'
