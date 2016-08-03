@@ -30,7 +30,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "github.com/vancarney/apihero-module-pug-router.git"
+    "url": "github.com/vancarney/apihero-module-pug-engine.git"
   },
   "dependencies": {
     "apihero-module-browserify": "git+https://github.com/vancarney/apihero-module-browserify.git",
@@ -51,7 +51,7 @@
     "mocha": "^2.5.3",
 	"supertest": "^1.2.0"
   },
-  "homepage": "https://github.com/vancarney/apihero-module-pug-router",
+  "homepage": "https://github.com/vancarney/apihero-module-pug-engine",
   "scripts": {
     "test": "cake test"
   }

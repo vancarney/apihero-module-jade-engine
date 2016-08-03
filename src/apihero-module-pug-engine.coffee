@@ -3,7 +3,7 @@ fs          = require 'fs-extra'
 path        = require 'path'
 router      = require 'apihero-module-pug-router'
 browserify  = require 'apihero-module-browserify'
-pug_runtime= require 'pug-runtime'
+pug_runtime = require 'pug-runtime'
 global.app_root ?= process.cwd()
 module.exports.browserify = browserify
 
@@ -13,7 +13,7 @@ _.each router['pug'], (fun,param)=>
   
 module.exports.router = router
 # _p = path.join __dirname, '..', 'node_modules', 'apihero-module-pug-router', 'node_modules', 'apihero-module-pug', 'node_modules', 'pug', 'runtime.js'
-_p = path.join '', 'node_modules','pug', 'runtime.js'
+_p = path.join '', 'node_modules','pug-runtime', 'index.js'
 module.exports['pug-runtime'] = fs.readFileSync _p, 'utf8'
 
 module.exports.init = (app, options, callback)->
@@ -32,7 +32,9 @@ module.exports.init = (app, options, callback)->
   
   app.once 'ahero-modules-loaded', =>
     out = "'use strict';\n\n"
-    (@configs = app.ApiHero.getModuleConfigs()).push
+    console.log "app.ApiHero.getModuleConfigs():"
+    console.log app.ApiHero.getModuleConfigs()
+    (@configs = app.ApiHero.getModuleConfigs() || []).push
       templates: path.join app_root,"views"
     _.each @configs, (config)=>
       out += tMan.processConfig config
